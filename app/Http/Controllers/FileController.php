@@ -35,10 +35,7 @@ class FileController extends BaseController
 
     public function viewFile($name){
 
-        $path = storage_path().DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.$name;
-
-
-        return response()->make(file_get_contents($path), 200, [
+        return response()->make(Storage::get($name), 200, [
             'Content-Type' => Storage::mimeType($name),
             'Content-Disposition' => 'inline; '.$name,
         ]);
