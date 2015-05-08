@@ -11,7 +11,7 @@
 
         service.GetAll = GetAll;
         service.GetById = GetById;
-        service.GetByUsername = GetByUsername;
+        service.GetByEmail = GetByEmail;
         service.Create = Create;
         service.Update = Update;
         service.Delete = Delete;
@@ -26,12 +26,12 @@
             return $http.get('/api/users/' + id).then(handleSuccess, handleError('Error getting user by id'));
         }
 
-        function GetByUsername(username) {
-            return $http.get('/api/users/' + username).then(handleSuccess, handleError('Error getting user by username'));
+        function GetByEmail(email) {
+            return $http.get('/api/user/profile/' + email).then(handleSuccess);
         }
 
         function Create(user) {
-            return $http.post('/api/users/create', user).then(handleSuccess, handleError('Error creating user'));
+            return $http.post('/api/auth/register', user).then(handleSuccess);
         }
 
         function Update(user) {
@@ -44,10 +44,8 @@
 
         // private functions
 
-        function handleSuccess(data) {
-           var deferred = $q.defer();
-           deferred.resolve({ success: true }); 
-           return deferred.promise;                      
+        function handleSuccess(data) {                               
+           return data.data;                      
        }
 
        function handleError(error) {

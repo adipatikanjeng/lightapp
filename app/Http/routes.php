@@ -17,22 +17,13 @@
 $app->get('/', function(){
 	return view('index');
 });
+$app->get('api/user/profile/{email}', '\App\Http\Controllers\UserController@profile');
+$app->post('api/auth/register', '\App\Http\Controllers\AuthController@register');
+$app->post('api/auth/login', '\App\Http\Controllers\AuthController@login');
 
-$app->post('api/users/create', '\App\Http\Controllers\UserController@create');
+
 
 $app->post('file', '\App\Http\Controllers\FileController@saveFile');
 $app->get('list', '\App\Http\Controllers\FileController@getFileList');
 $app->get('view/{filename}', '\App\Http\Controllers\FileController@viewFile');
 $app->get('delete/{filename}', '\App\Http\Controllers\FileController@deleteFile');
-
-use Illuminate\Http\Request;
-
-$app->post('api/auth/login', function(Request $request) {
-	$attempt = Auth::attempt($request->only('email', 'password'));
-    if ($attempt) {
-        return response()->json(['success' => true]);
-    }else{
-    	return response()->json(['success' => false, 'message' => 'Email or password is incorrect']);
-    }
-
-});

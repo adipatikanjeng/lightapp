@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="csrf-token" content="<?php echo csrf_token(); ?>" />
-    <title>AngularJS User Registration and Login Example</title>
+    <title>Lumen and AngularJS User Registration and Login</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
     <link href="app-content/app.css" rel="stylesheet" />
 </head>
@@ -16,14 +16,6 @@
                 <div ng-view></div>
             </div>
         </div>
-    </div>
-    <div class="credits text-center">
-        <p>
-            <a href="http://jasonwatmore.com/post/2015/03/10/AngularJS-User-Registration-and-Login-Example.aspx">AngularJS User Registration and Login Example</a>
-        </p>
-        <p>
-            <a href="http://jasonwatmore.com">JasonWatmore.com</a>
-        </p>
     </div>
 
     <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
