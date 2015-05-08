@@ -14,7 +14,7 @@ class FileController extends BaseController
     public function saveFile()
     {
         $file = Request::file('file');
-        Storage::put($file->getClientOriginalName(),  File::get($file));
+        Storage::put(date('d-m-yh-i-s').'.'.$file->guessExtension(),  File::get($file));
 
         return response()->json('success');
     }

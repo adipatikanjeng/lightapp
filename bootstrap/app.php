@@ -21,7 +21,7 @@ $app = new Laravel\Lumen\Application(
 
 $app->withFacades();
 
-// $app->withEloquent();
+$app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
@@ -55,13 +55,13 @@ $app->singleton(
 |
 */
 
-// $app->middleware([
-//     // 'Illuminate\Cookie\Middleware\EncryptCookies',
-//     // 'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
-//     // 'Illuminate\Session\Middleware\StartSession',
-//     // 'Illuminate\View\Middleware\ShareErrorsFromSession',
-//     // 'Laravel\Lumen\Http\Middleware\VerifyCsrfToken',
-// ]);
+$app->middleware([
+    'Illuminate\Cookie\Middleware\EncryptCookies',
+    'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
+    'Illuminate\Session\Middleware\StartSession',
+    'Illuminate\View\Middleware\ShareErrorsFromSession',
+    'Laravel\Lumen\Http\Middleware\VerifyCsrfToken',
+]);
 
 // $app->routeMiddleware([
 

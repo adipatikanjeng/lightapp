@@ -31,14 +31,14 @@
 
 <div class="container" ng-controller="fileController">
     <div class="row">
-        <div ng-file-drop ng-model="files" class="col-lg-12 drop-box"
+        <div ng-file-drop ng-model="files" ng-file-accept=".jpg" class="col-lg-12 drop-box"
              drag-over-class="dragover" ng-multiple="true" allow-dir="true"
              accept="*">Drop files here
         </div>
 
         <table class="table">
             <tr ng-repeat="name in uploaded">
-                    <td><a href="/view/{{name}}"> {{name}}</a></td>
+                    <td><a href="/view/{{name}}"><img width="40" ng-src="/view/{{name}}" alt=""></a></td>
                 <td><button class="btn btn-default" ng-click="delete(name)"><span class="glyphicon glyphicon-trash"></span> Del</button></td></tr>
         </table>
     </div>
