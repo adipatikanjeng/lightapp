@@ -26,7 +26,7 @@ Email <input type="text" value="{{ vm.user.email }}">
 
         <table class="table">
             <tr ng-repeat="name in uploaded">
-                    <td><a href="/view/{{name}}"><img width="40" ng-src="/view/{{name}}" alt=""></a></td>
+                    <td><a href="/file/view/{{name}}"><img width="40" ng-src="/file/view/{{name}}" alt=""></a></td>
                 <td><button class="btn btn-default" ng-click="delete(name)"><span class="glyphicon glyphicon-trash"></span> Del</button></td></tr>
         </table>
     </div>

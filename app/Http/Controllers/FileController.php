@@ -3,42 +3,61 @@
 use Laravel\Lumen\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use App\Files;
 
 use Request;
 
 
-
 class FileController extends BaseController
 {
+    function __construct(Files $files)
+    {
+        $this->model = $files;
+    }
 
-    public function saveFile()
+    public function upload()
     {
         $file = Request::file('file');
-        Storage::put(date('d-m-yh-i-s').'.'.$file->guessExtension(),  File::get($file));
+
+        $temp_name = explode(".", $file->getClientOriginalName());
+        $filename = strtolower($temp_name[0]."_".date('mdYhis')).".".end($temp_name);
+        Storage::put($filename,  File::get($file));
+
+        $model = $this->model;
+        $model->name = $filename;
+        $model->user_id = \Auth::user()->id;
+        $model->save();
 
         return response()->json('success');
     }
 
-    public function deleteFile($name)
+    public function delete($name)
     {
         Storage::delete($name);
+        $model = $this->model->whereName($name)->first();
+        $model->delete();
+
         return response()->json('success');
     }
 
 
-    public function getFileList(){
+    public function lists(){
 
         $files = Storage::files('/');
-        return response()->json($files);
+        $model = $this->model->whereUserId(\Auth::user()->id)->select('name')->get();
+        foreach ($model as $key => $value) {
+            $name[] += $value;
+        }
+        return response()->json($name);
 
     }
 
-    public function viewFile($name){
+    public function view($name){
 
         return response()->make(Storage::get($name), 200, [
             'Content-Type' => Storage::mimeType($name),
             'Content-Disposition' => 'inline; '.$name,
-        ]);
+            ]);
 
     }
 
