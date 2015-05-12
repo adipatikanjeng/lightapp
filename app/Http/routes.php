@@ -23,7 +23,7 @@ $app->post('api/auth/login', '\App\Http\Controllers\AuthController@login');
 
 
 
-// $app->post('file', '\App\Http\Controllers\FileController@saveFile');
-// $app->get('list', '\App\Http\Controllers\FileController@getFileList');
-// $app->get('view/{filename}', '\App\Http\Controllers\FileController@viewFile');
-// $app->get('delete/{filename}', '\App\Http\Controllers\FileController@deleteFile');
+$app->post('file', '\App\Http\Controllers\FileController@saveFile');
+$app->get('list', '\App\Http\Controllers\FileController@getFileList');
+$app->get('view/{filename}', '\App\Http\Controllers\FileController@viewFile');
+$app->get('delete/{filename}', '\App\Http\Controllers\FileController@deleteFile');

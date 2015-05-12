@@ -5,8 +5,8 @@
         .module('app')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['UserService', '$rootScope'];
-    function HomeController(UserService, $rootScope) {
+    HomeController.$inject = ['UserService', '$rootScope', '$scope', '$upload', '$http'];
+    function HomeController(UserService, $rootScope, $scope, $upload, $http) {
         var vm = this;
 
         vm.user = null;
@@ -18,6 +18,7 @@
         function initController() {
             loadCurrentUser();
             loadAllUsers();
+            uploadFiles();
         }
 
         function loadCurrentUser() {
@@ -39,6 +40,55 @@
             .then(function () {
                 loadAllUsers();
             });
+        }
+
+        function uploadFiles()
+        {
+            $scope.uploaded = [];
+
+            $scope.$watch('files', function () {
+                $scope.upload($scope.files);
+            });
+
+            $http.get('/list').
+            success(function(data, status, headers, config) {
+                $scope.uploaded = data;
+            });
+
+
+            $scope.upload = function (files) {
+                if (files && files.length) {
+                    for (var i = 0; i < files.length; i++) {
+                        var file = files[i];
+                        $upload.upload({
+                            url: '/file',
+                            file: file
+                        }).progress(function (evt) {
+                            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                            console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+                        }).success(function (data, status, headers, config) {
+                            console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+                            $scope.getfiles();
+                        });
+                    }
+                }
+            };
+
+
+            $scope.getfiles = function(){
+                $http.get('/list').
+                success(function(data, status, headers, config) {
+                    $scope.uploaded = data;
+                });
+            };
+
+
+            $scope.delete = function(name){
+                $http.get('/delete/'+ name).
+                success(function(data, status, headers, config) {
+                    $scope.getfiles();
+                });
+            };
         }
     }
 

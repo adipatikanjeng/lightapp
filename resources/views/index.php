@@ -22,6 +22,8 @@
     <script src="//code.angularjs.org/1.2.20/angular.js"></script>
     <script src="//code.angularjs.org/1.2.20/angular-route.js"></script>
     <script src="//code.angularjs.org/1.2.13/angular-cookies.js"></script>
+    <script src="lib/ng-file-upload/angular-file-upload.js"></script>
+    <script src="lib/ng-file-upload/angular-file-upload-shim.min.js"></script>
 
     <script src="app.js"></script>
     <script src="app-services/authentication.service.js"></script>
