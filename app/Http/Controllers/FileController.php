@@ -11,7 +11,7 @@ use Request;
 class FileController extends BaseController
 {
     function __construct(Files $files)
-    {
+    {       
         $this->model = $files;
     }
 
@@ -43,12 +43,11 @@ class FileController extends BaseController
 
     public function lists(){
 
+
         $files = Storage::files('/');
         $model = $this->model->whereUserId(\Auth::user()->id)->select('name')->get();
-        foreach ($model as $key => $value) {
-            $name[] += $value;
-        }
-        return response()->json($name);
+          
+        return response()->json($model->toArray() );
 
     }
 

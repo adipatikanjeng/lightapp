@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="csrf-token" content="<?php echo csrf_token(); ?>" />
     <title>Lumen and AngularJS User Registration and Login</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="app-content/app.css" rel="stylesheet" />
 </head>
 <body>
@@ -18,10 +18,10 @@
         </div>
     </div>
 
-    <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
-    <script src="//code.angularjs.org/1.2.20/angular.js"></script>
-    <script src="//code.angularjs.org/1.2.20/angular-route.js"></script>
-    <script src="//code.angularjs.org/1.2.13/angular-cookies.js"></script>
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-route/angular-route.js"></script>
+    <script src="lib/angular-cookies/angular-cookies.js"></script>
     <script src="lib/ng-file-upload/angular-file-upload.js"></script>
     <script src="lib/ng-file-upload/angular-file-upload-shim.min.js"></script>
 

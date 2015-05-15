@@ -22,8 +22,19 @@ $app->post('api/auth/register', '\App\Http\Controllers\AuthController@register')
 $app->post('api/auth/login', '\App\Http\Controllers\AuthController@login');
 
 
+$app->group(['middleware' => 'auth'], function($app){
+	  $app->get('/test', function() {
+      echo "hallo";
+    });
+	$app->post('file/upload', '\App\Http\Controllers\FileController@upload');
+	$app->get('file/lists', '\App\Http\Controllers\FileController@lists');
 
-$app->post('file/upload', '\App\Http\Controllers\FileController@upload');
-$app->get('file/lists', '\App\Http\Controllers\FileController@lists');
-$app->get('file/view/{filename}', '\App\Http\Controllers\FileController@view');
-$app->get('file/delete/{filename}', '\App\Http\Controllers\FileController@delete');
+	$app->get('file/view/{filename}', '\App\Http\Controllers\FileController@view');
+	$app->get('file/delete/{filename}', '\App\Http\Controllers\FileController@delete');
+
+});
+
+$app->get('logout', function(){
+	\Auth::logout();
+	return response()->json('success logout');
+});
