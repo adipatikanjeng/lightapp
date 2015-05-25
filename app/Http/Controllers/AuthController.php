@@ -41,15 +41,6 @@ class AuthController extends Controller
 		}else{
 			return response()->json(['success' => false, 'message' => 'Email or password is incorrect']);
 		}
-	}
-
-	public function sendEmail($email)
-	{
-		\Mail::send('emails.auth.register', array('data' => $data), function($message) use ($email)
-		{
-			$message->to($email);
-			$message->subject(Lang::get('auth.email.account_confirmation.subject'));
-		});
-	}
+	}	
 	
 }
