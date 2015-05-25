@@ -45,7 +45,7 @@ class FileController extends BaseController
 
 
         $files = Storage::files('/');
-        $model = $this->model->whereUserId(\Auth::user()->id)->select('name')->get();
+        $model = $this->model->whereUserId(\Auth::user()->id)->select('name')->orderBy('created_at', 'DESC')->get();
           
         return response()->json($model->toArray() );
 

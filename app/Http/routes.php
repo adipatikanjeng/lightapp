@@ -22,10 +22,7 @@ $app->post('api/auth/register', '\App\Http\Controllers\AuthController@register')
 $app->post('api/auth/login', '\App\Http\Controllers\AuthController@login');
 
 
-$app->group(['middleware' => 'auth'], function($app){
-	  $app->get('/test', function() {
-      echo "hallo";
-    });
+$app->group(['middleware' => 'authFile'], function($app){
 	$app->post('file/upload', '\App\Http\Controllers\FileController@upload');
 	$app->get('file/lists', '\App\Http\Controllers\FileController@lists');
 

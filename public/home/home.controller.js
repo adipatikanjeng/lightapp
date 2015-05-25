@@ -2,8 +2,8 @@
 	'use strict';
 
 	angular
-		.module('app')
-		.controller('HomeController', HomeController);
+	.module('app')
+	.controller('HomeController', HomeController);
 
 	HomeController.$inject = ['UserService', '$rootScope', '$scope', '$upload', '$http'];
 	function HomeController(UserService, $rootScope, $scope, $upload, $http) {
@@ -19,20 +19,21 @@
 			loadCurrentUser();
 			loadAllUsers();
 			uploadFiles();
+			// pagination();
 		}
 
 		function loadCurrentUser() {
 			UserService.GetByEmail($rootScope.globals.currentUser.email)
-				.then(function (user) {
-					vm.user = user;
-				});
+			.then(function (user) {
+				vm.user = user;
+			});
 		}
 
 		function loadAllUsers() {
 			UserService.GetAll()
-				.then(function (users) {
-					vm.allUsers = users;
-				});
+			.then(function (users) {
+				vm.allUsers = users;
+			});
 		}
 
 		function deleteUser(id) {
@@ -89,6 +90,59 @@
 					$scope.getfiles();
 				});
 			};
+		}
+
+		function pagination()
+		{
+			$scope.itemsPerPage = 5;
+			$scope.currentPage = 0;
+			$scope.items = name;
+
+
+			$scope.range = function() {
+				var rangeSize = 3;
+				var ret = [];
+				var start;
+
+				start = $scope.currentPage;
+				if ( start > $scope.pageCount()-rangeSize ) {
+					start = $scope.pageCount()-rangeSize+1;
+				}
+
+				for (var i=start; i<start+rangeSize; i++) {
+					ret.push(i);
+				}
+				return ret;
+			};
+
+			$scope.prevPage = function() {
+				if ($scope.currentPage > 0) {
+					$scope.currentPage--;
+				}
+			};
+
+			$scope.prevPageDisabled = function() {
+				return $scope.currentPage === 0 ? "disabled" : "";
+			};
+
+			$scope.pageCount = function() {
+				return Math.ceil($scope.items.length/$scope.itemsPerPage)-1;
+			};
+
+			$scope.nextPage = function() {
+				if ($scope.currentPage < $scope.pageCount()) {
+					$scope.currentPage++;
+				}
+			};
+
+			$scope.nextPageDisabled = function() {
+				return $scope.currentPage === $scope.pageCount() ? "disabled" : "";
+			};
+
+			$scope.setPage = function(n) {
+				$scope.currentPage = n;
+			};
+
 		}
 	}
 

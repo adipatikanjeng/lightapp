@@ -15,7 +15,7 @@
 
         return service;
 
-        function Login(email, password, callback) {
+        function Login(email, password, remember, callback) {
 
             /* Dummy authentication for testing, uses $timeout to simulate api call
              ----------------------------------------------*/
@@ -34,7 +34,7 @@
 
             /* Use this for real authentication
              ----------------------------------------------*/
-            $http.post('/api/auth/login', { email: email, password: password })
+            $http.post('/api/auth/login', { email: email, password: password, remember: remember })
                .success(function (response) {              
                    callback(response);
                });

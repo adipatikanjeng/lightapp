@@ -65,6 +65,7 @@ $app->middleware([
 
 $app->routeMiddleware([
  'auth' => 'App\Http\Middleware\Authenticate',
+ 'authFile' => 'App\Http\Middleware\AuthenticateFile',
 ]);
 
 /*
