@@ -8,7 +8,8 @@
         "laravel/lumen-framework": "5.0.*",
         "vlucas/phpdotenv": "~1.0",
         "predis/predis": "~1.1@dev",
-        "ext-memcached": "*"
+        "ext-memcached": "*",
+        "memcachier/php-memcache-sasl": ">=1.0.1"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0"
