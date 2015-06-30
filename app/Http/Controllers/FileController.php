@@ -1,4 +1,6 @@
-<?php namespace App\Http\Controllers;
+<?php 
+
+namespace App\Http\Controllers;
 
 use Laravel\Lumen\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Storage;
@@ -16,7 +18,7 @@ class FileController extends BaseController
     }
 
     public function upload()
-    {
+    {       
         $file = Request::file('file');
 
         $temp_name = explode(".", $file->getClientOriginalName());
@@ -46,7 +48,7 @@ class FileController extends BaseController
 
         $files = Storage::files('/');
         $model = $this->model->whereUserId(\Auth::user()->id)->select('name')->orderBy('created_at', 'DESC')->get();
-          
+
         return response()->json($model->toArray() );
 
     }

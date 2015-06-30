@@ -17,7 +17,7 @@
 
 		function initController() {
 			loadCurrentUser();
-			loadAllUsers();
+			// loadAllUsers();
 			uploadFiles();
 			// pagination();
 		}
@@ -47,9 +47,9 @@
 		{
 			$scope.uploaded = [];
 
-			$scope.$watch('files', function () {
-				$scope.upload($scope.files);
-			});
+			// $scope.$watch('files', function () {
+			// 	$scope.upload($scope.files);
+			// });
 
 			$http.get('/file/lists').
 			success(function(data, status, headers, config) {
