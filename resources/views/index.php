@@ -2,7 +2,7 @@
 <html ng-app="app">
 <head>
     <meta charset="utf-8" />
-    <meta name="csrf-token" content="<?php echo csrf_token(); ?>" />
+    <meta name="csrf-token" content="<?php echo csrf_token();?>" />
     <title>Lumen and AngularJS User Registration and Login</title>
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="app-content/app.css" rel="stylesheet" />
@@ -33,7 +33,7 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        });
+        })
     </script>
 
     <!-- Real user service that uses an api -->

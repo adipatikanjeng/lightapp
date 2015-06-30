@@ -2,32 +2,32 @@
     'use strict';
 
     angular
-        .module('app', ['ngRoute', 'ngCookies', 'angularFileUpload'])
-        .config(config)
-        .run(run);
+    .module('app', ['ngRoute', 'ngCookies', 'angularFileUpload'])
+    .config(config)
+    .run(run);
 
     config.$inject = ['$routeProvider', '$locationProvider'];
     function config($routeProvider, $locationProvider) {
         $routeProvider
-            .when('/', {
-                controller: 'HomeController',
-                templateUrl: 'home/home.view.html',
-                controllerAs: 'vm'
-            })
+        .when('/', {
+            controller: 'HomeController',
+            templateUrl: 'home/home.view.html',
+            controllerAs: 'vm'
+        })
 
-            .when('/login', {
-                controller: 'LoginController',
-                templateUrl: 'login/login.view.html',
-                controllerAs: 'vm'
-            })
+        .when('/login', {
+            controller: 'LoginController',
+            templateUrl: 'login/login.view.html',
+            controllerAs: 'vm'
+        })
 
-            .when('/register', {
-                controller: 'RegisterController',
-                templateUrl: 'register/register.view.html',
-                controllerAs: 'vm'
-            })
+        .when('/register', {
+            controller: 'RegisterController',
+            templateUrl: 'register/register.view.html',
+            controllerAs: 'vm'
+        })
 
-            .otherwise({ redirectTo: '/login' });
+        .otherwise({ redirectTo: '/login' });
     }
 
     run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
@@ -46,6 +46,7 @@
                 $location.path('/login');
             }
         });
+        $http.defaults.headers.post = { 'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content') };
     }
 
 })();
