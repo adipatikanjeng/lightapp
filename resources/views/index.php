@@ -11,6 +11,7 @@
 
     <div class="jumbotron">
         <div class="container">
+        <toaster-container></toaster-container>
             <div class="col-sm-8 col-sm-offset-2">
                 <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
                 <div ng-view></div>
@@ -18,13 +19,16 @@
         </div>
     </div>
 
-    <script src="lib/jquery/dist/jquery.js"></script>
-    <script src="lib/angular/angular.js"></script>
-    <script src="lib/angular-route/angular-route.js"></script>
-    <script src="lib/angular-cookies/angular-cookies.js"></script>
+    <script src="lib/jquery.js"></script>
+    <script src="lib/angular.js"></script>
+    <script src="lib/angular-route.js"></script>
+    <script src="lib/angular-cookies.js"></script>
     <script src="lib/ng-file-upload/angular-file-upload.js"></script>
     <script src="lib/ng-file-upload/angular-file-upload-shim.min.js"></script>
 
+    <link href="lib/toaster.css" rel="stylesheet" />
+    <script src="lib/angular-animate.js" ></script>
+    <script src="lib/toaster.js"></script>
     <script src="app.js"></script>
     <script src="app-services/authentication.service.js"></script>
     <script src="app-services/flash.service.js"></script>

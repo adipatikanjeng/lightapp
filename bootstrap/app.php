@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
-Dotenv::load(__DIR__.'/../');
+Dotenv::load(__DIR__ . '/../');
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +13,10 @@ Dotenv::load(__DIR__.'/../');
 | that serves as the central piece of this framework. We'll use this
 | application as an "IoC" container and router for this framework.
 |
-*/
+ */
 
 $app = new Laravel\Lumen\Application(
-	realpath(__DIR__.'/../')
+	realpath(__DIR__ . '/../')
 );
 
 $app->withFacades();
@@ -32,16 +32,16 @@ $app->withEloquent();
 | register the exception handler and the console kernel. You may add
 | your own bindings here if you like or you can make another file.
 |
-*/
+ */
 
 $app->singleton(
-    'Illuminate\Contracts\Debug\ExceptionHandler',
-    'App\Exceptions\Handler'
+	'Illuminate\Contracts\Debug\ExceptionHandler',
+	'App\Exceptions\Handler'
 );
 
 $app->singleton(
-    'Illuminate\Contracts\Console\Kernel',
-    'App\Console\Kernel'
+	'Illuminate\Contracts\Console\Kernel',
+	'App\Console\Kernel'
 );
 
 /*
@@ -53,19 +53,19 @@ $app->singleton(
 | be global middleware that run before and after each request into a
 | route or middleware that'll be assigned to some specific routes.
 |
-*/
+ */
 
 $app->middleware([
-    'Illuminate\Cookie\Middleware\EncryptCookies',
-    'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
-    'Illuminate\Session\Middleware\StartSession',
-    'Illuminate\View\Middleware\ShareErrorsFromSession',
-    'Laravel\Lumen\Http\Middleware\VerifyCsrfToken',
+	'Illuminate\Cookie\Middleware\EncryptCookies',
+	'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
+	'Illuminate\Session\Middleware\StartSession',
+	'Illuminate\View\Middleware\ShareErrorsFromSession',
+	'Laravel\Lumen\Http\Middleware\VerifyCsrfToken',
 ]);
 
 $app->routeMiddleware([
- 'auth' => 'App\Http\Middleware\Authenticate',
- 'authFile' => 'App\Http\Middleware\AuthenticateFile',
+	'auth' => 'App\Http\Middleware\Authenticate',
+	'authFile' => 'App\Http\Middleware\AuthenticateFile',
 ]);
 
 /*
@@ -77,9 +77,9 @@ $app->routeMiddleware([
 | are used to bind services into the container. Service providers are
 | totally optional, so you are not required to uncomment this line.
 |
-*/
+ */
 
-// $app->register('App\Providers\AppServiceProvider');
+$app->register('App\Providers\AppServiceProvider');
 
 /*
 |--------------------------------------------------------------------------
@@ -90,8 +90,8 @@ $app->routeMiddleware([
 | the application. This will provide all of the URLs the application
 | can respond to, as well as the controllers that may handle them.
 |
-*/
+ */
 
-require __DIR__.'/../app/Http/routes.php';
+require __DIR__ . '/../app/Http/routes.php';
 
 return $app;

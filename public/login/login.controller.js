@@ -5,8 +5,8 @@
         .module('app')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$location', 'AuthenticationService', 'FlashService', '$http'];
-    function LoginController($location, AuthenticationService, FlashService, $http) {
+    LoginController.$inject = ['$location', 'AuthenticationService', '$http', 'toaster'];
+    function LoginController($location, AuthenticationService, $http, toaster ) {
         var vm = this;
 
         vm.login = login;
@@ -23,8 +23,8 @@
                 if (response.success) {
                     AuthenticationService.SetCredentials(vm.email, vm.password);
                     $location.path('/');
-                } else {
-                    FlashService.Error(response.message);
+                } else {                    
+                    toaster.pop('warning', "Warning", response.message);
                     vm.dataLoading = false;
                 }
             });
