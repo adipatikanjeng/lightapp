@@ -20,11 +20,12 @@
         function login() {
             vm.dataLoading = true;
             AuthenticationService.Login(vm.email, vm.password, vm.remember, function (response) {
-                if (response.success) {
+                if (response.type == 'success') {
                     AuthenticationService.SetCredentials(vm.email, vm.password);
+                    toaster.pop( response.type, response.title, response.message);
                     $location.path('/');
                 } else {                    
-                    toaster.pop('warning', "Warning", response.message);
+                    toaster.pop( response.type, response.title, response.message);
                     vm.dataLoading = false;
                 }
             });

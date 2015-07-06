@@ -16,12 +16,11 @@
             UserService.Create(vm.user)
                 .then(function (response) {
                     console.log(response);
-                    if (response.success) {
-                        // FlashService.Success(response.message, true);
-                        toaster.pop('success', "Success", response.message);
+                    if (response.success) {                       
+                        toaster.pop(response.type, response.title, response.message);
                         $location.path('/login');
                     } else {                       
-                        toaster.pop('warning', "Warning", response.message);
+                        toaster.pop(response.type, response.title, response.message);
                         vm.dataLoading = false;
                     }
                 });
