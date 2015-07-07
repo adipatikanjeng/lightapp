@@ -25,7 +25,7 @@
             controller: 'RegisterController',
             templateUrl: 'register/register.view.html',
             controllerAs: 'vm'
-        })      
+        })
 
         .otherwise({ redirectTo: '/login' });
     }

@@ -12,8 +12,13 @@
         vm.login = login;
 
         (function initController() {
-            // reset login status
-            $http.get('logout');
+            // reset login status           
+            $http.get('api/auth/logout').success(function(response){
+                if(response.action)
+                {
+                    toaster.pop( response.type, response.title, response.message);
+                }
+            });
             AuthenticationService.ClearCredentials();
         })();
 

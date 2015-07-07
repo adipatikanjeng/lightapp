@@ -40,4 +40,9 @@ class AuthController extends Controller {
 		}
 	}
 
+	public function logout() {
+		\Auth::logout();
+		return response()->json(['type' => 'success', 'title' => 'Success', 'message' => 'Logout successfull', 'action' => 'logout']);
+	}
+
 }

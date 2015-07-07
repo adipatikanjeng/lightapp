@@ -16,9 +16,9 @@
 		initController();
 
 		function initController() {
-			loadCurrentUser();
+			// loadCurrentUser();
 			// loadAllUsers();
-			uploadFiles();
+			// uploadFiles();
 			// pagination();
 		}
 

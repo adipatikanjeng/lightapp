@@ -48,6 +48,7 @@
 
     <script src="home/home.controller.js"></script>
     <script src="login/login.controller.js"></script>
+     <script src="logout/logout.controller.js"></script>
     <script src="register/register.controller.js"></script>
 </body>
 </html>
